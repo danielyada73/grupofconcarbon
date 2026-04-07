@@ -40,8 +40,8 @@ export default function App() {
       </div>
 
       {/* Left Fixed Sidebar */}
-      <div className="fixed left-0 top-0 h-full w-20 border-r border-white/10 bg-[#15191E]/80 backdrop-blur-sm z-50 flex flex-col items-center justify-between py-10 max-lg:hidden">
-        <div className="text-[#c5a47e] font-kiona font-bold text-3xl">
+      <div className="fixed left-0 top-0 h-full w-20 border-r border-white/10 bg-[#15191E]/80 backdrop-blur-sm z-50 flex flex-col items-center justify-between py-10 max-lg:hidden lg:flex">
+        <div className="text-[#c5a47e] font-kiona font-bold text-3xl opacity-0 select-none pointer-events-none">
           01 <span className="text-sm text-gray-500 font-normal">/ 03</span>
         </div>
         
@@ -53,9 +53,7 @@ export default function App() {
 
         <div className="flex flex-col gap-6 text-gray-500">
           <a href="#" className="hover:text-[#c5a47e] transition-colors"><Instagram size={16} /></a>
-          <a href="#" className="hover:text-[#c5a47e] transition-colors"><Twitter size={16} /></a>
           <a href="#" className="hover:text-[#c5a47e] transition-colors"><Linkedin size={16} /></a>
-          <a href="#" className="hover:text-[#c5a47e] transition-colors"><Facebook size={16} /></a>
         </div>
       </div>
 
@@ -70,19 +68,19 @@ export default function App() {
                 <span className="text-white">FCON</span>
                 <span className="text-[#c5a47e]">CARBON</span>
               </div>
-              <div className="block text-sm font-kiona text-gray-400 tracking-widest font-medium max-md:hidden">
+              <div className="hidden md:block text-sm font-kiona text-gray-400 tracking-widest font-medium">
                 (11) 93740-8195
               </div>
             </div>
 
-            <nav className="flex items-center gap-6 lg:gap-8 text-sm font-kiona font-semibold tracking-[0.2em] uppercase text-gray-300 max-md:hidden">
-              <a href="#" className="text-[#c5a47e]">Home</a>
+            <nav className="flex items-center gap-6 lg:gap-8 text-sm font-kiona font-semibold tracking-[0.2em] uppercase text-gray-300 max-md:hidden md:flex">
+              <a href="#" className="hover:text-[#c5a47e] transition-colors">Home</a>
               <a href="#about" className="hover:text-[#c5a47e] transition-colors">Serviços</a>
               <a href="#projects" className="hover:text-[#c5a47e] transition-colors">Portfólio</a>
               <a href="#contact" className="hover:text-[#c5a47e] transition-colors">Contato</a>
             </nav>
 
-            <button className="text-white p-2 max-md:block md:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+            <button className="text-white p-2 max-md:block md:hidden block" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
               {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
@@ -109,9 +107,7 @@ export default function App() {
               </div>
               <div className="flex gap-6 text-gray-500 mt-4">
                 <a href="#" className="hover:text-[#c5a47e] transition-colors"><Instagram size={20} /></a>
-                <a href="#" className="hover:text-[#c5a47e] transition-colors"><Twitter size={20} /></a>
                 <a href="#" className="hover:text-[#c5a47e] transition-colors"><Linkedin size={20} /></a>
-                <a href="#" className="hover:text-[#c5a47e] transition-colors"><Facebook size={20} /></a>
               </div>
             </motion.div>
           )}
@@ -136,7 +132,7 @@ export default function App() {
           </div>
 
           <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10 flex justify-between items-center w-full">
-            <div className="flex items-center gap-4 text-sm font-kiona font-semibold tracking-[0.2em] text-gray-400 uppercase max-lg:hidden">
+            <div className="flex items-center gap-4 text-sm font-kiona font-semibold tracking-[0.2em] text-gray-400 uppercase max-lg:hidden lg:flex">
               <button 
                 onClick={() => setCurrentHeroImage((prev) => (prev - 1 + heroImages.length) % heroImages.length)}
                 className="hover:text-[#c5a47e] flex items-center gap-2 transition-colors z-20 cursor-pointer"
@@ -157,9 +153,9 @@ export default function App() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="lg:ml-auto lg:text-right w-full max-w-6xl"
             >
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-kiona font-bold leading-[1.1] mb-4 sm:mb-6 uppercase tracking-wide">
-                <span className="block lg:whitespace-nowrap">25 anos de experiência em</span>
-                <span className="block lg:whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">loteamentos e infraestrutura</span>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-[5rem] font-kiona font-bold leading-tight mb-4 sm:mb-6 uppercase tracking-wider">
+                <span className="block mb-2 md:mb-0">25 anos de experiência em</span>
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 leading-tight">loteamentos e infraestrutura</span>
               </h1>
               <p className="text-gray-400 text-base sm:text-lg md:text-xl mb-6 sm:mb-10 max-w-xl lg:ml-auto font-light">
                 A solução completa para o seu empreendimento em São Paulo com alto padrão de qualidade.
@@ -257,7 +253,7 @@ export default function App() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="relative group overflow-hidden border-r border-white/5 min-h-[250px] sm:min-h-[300px]"
             >
-              <img src="https://images.unsplash.com/photo-1504307651254-35680f356db4?q=80&w=800" alt="Gabião" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100" />
+              <img src="/GABIÃO.jpg" alt="Gabião" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#15191E] via-[#15191E]/50 to-transparent"></div>
               <div className="absolute top-6 sm:top-10 left-6 sm:left-8 right-6 sm:right-8">
                 <h3 className="text-xl sm:text-2xl font-kiona font-bold uppercase tracking-wide">Gabião</h3>
@@ -277,7 +273,7 @@ export default function App() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="relative group overflow-hidden border-r border-white/5 min-h-[250px] sm:min-h-[300px]"
             >
-              <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=800" alt="Portarias e Club House" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100" />
+              <img src="/Portarias e Club House.jpg" alt="Portarias e Club House" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#15191E] via-[#15191E]/50 to-transparent"></div>
               <div className="absolute top-6 sm:top-10 left-6 sm:left-8 right-6 sm:right-8">
                 <h3 className="text-xl sm:text-2xl font-kiona font-bold uppercase tracking-wide">Portarias e<br/>Club House</h3>
@@ -297,7 +293,7 @@ export default function App() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="relative group overflow-hidden border-r border-white/5 min-h-[250px] sm:min-h-[300px]"
             >
-              <img src="https://images.unsplash.com/photo-1541888087425-ce81dfc46928?q=80&w=800" alt="Infraestrutura Urbana" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100" />
+              <img src="/Infraestrutura Urbana.jpg" alt="Infraestrutura Urbana" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#15191E] via-[#15191E]/50 to-transparent"></div>
               <div className="absolute top-6 sm:top-10 left-6 sm:left-8 right-6 sm:right-8">
                 <h3 className="text-xl sm:text-2xl font-kiona font-bold uppercase tracking-wide">Infraestrutura<br/>Urbana</h3>
@@ -317,7 +313,7 @@ export default function App() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="relative group overflow-hidden min-h-[250px] sm:min-h-[300px]"
             >
-              <img src="https://images.unsplash.com/photo-1449844908441-8829872d2607?q=80&w=800" alt="Urbanismo" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100" />
+              <img src="/Urbanismo.jpg" alt="Urbanismo" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#15191E] via-[#15191E]/50 to-transparent"></div>
               <div className="absolute top-6 sm:top-10 left-6 sm:left-8 right-6 sm:right-8">
                 <h3 className="text-xl sm:text-2xl font-kiona font-bold uppercase tracking-wide">Urbanismo</h3>
