@@ -5,6 +5,21 @@ import { motion, AnimatePresence } from 'motion/react';
 export default function App() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [currentHeroImage, setCurrentHeroImage] = useState(0);
+
+  const heroImages = [
+    "https://images.unsplash.com/photo-1541888087425-ce81dfc46928?q=80&w=2000",
+    "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2000",
+    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2000",
+    "https://images.unsplash.com/photo-1449844908441-8829872d2607?q=80&w=2000"
+  ];
+
+  useEffect(() => {
+    const slideInterval = setInterval(() => {
+      setCurrentHeroImage((prev) => (prev + 1) % heroImages.length);
+    }, 6000);
+    return () => clearInterval(slideInterval);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -103,22 +118,35 @@ export default function App() {
         </AnimatePresence>
 
         {/* Hero Section */}
-        <section className="relative h-screen flex items-center">
-          <div className="absolute inset-0 z-0">
-            <img 
-              src="https://images.unsplash.com/photo-1541888087425-ce81dfc46928?q=80&w=2000" 
-              alt="Infraestrutura" 
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#15191E] via-[#15191E]/80 to-transparent"></div>
+        <section className="relative h-screen flex items-center overflow-hidden">
+          <div className="absolute inset-0 z-0 bg-[#15191E]">
+            <AnimatePresence mode="popLayout">
+              <motion.img
+                key={currentHeroImage}
+                src={heroImages[currentHeroImage]}
+                alt="Infraestrutura FCON Carbon"
+                initial={{ opacity: 0, scale: 1.05 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 1.5, ease: "easeInOut" }}
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+            </AnimatePresence>
+            <div className="absolute inset-0 bg-gradient-to-r from-[#15191E] via-[#15191E]/80 to-[#15191E]/20"></div>
           </div>
 
           <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10 flex justify-between items-center w-full">
             <div className="flex items-center gap-4 text-sm font-kiona font-semibold tracking-[0.2em] text-gray-400 uppercase max-lg:hidden">
-              <button className="hover:text-[#c5a47e] flex items-center gap-2 transition-colors">
+              <button 
+                onClick={() => setCurrentHeroImage((prev) => (prev - 1 + heroImages.length) % heroImages.length)}
+                className="hover:text-[#c5a47e] flex items-center gap-2 transition-colors z-20 cursor-pointer"
+              >
                 <ChevronLeft size={16} /> Prev
               </button>
-              <button className="hover:text-[#c5a47e] flex items-center gap-2 transition-colors">
+              <button 
+                onClick={() => setCurrentHeroImage((prev) => (prev + 1) % heroImages.length)}
+                className="hover:text-[#c5a47e] flex items-center gap-2 transition-colors z-20 cursor-pointer"
+              >
                 Next <ChevronRight size={16} />
               </button>
             </div>
@@ -127,12 +155,11 @@ export default function App() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="max-w-3xl lg:ml-auto lg:text-right"
+              className="lg:ml-auto lg:text-right w-full max-w-6xl"
             >
-              <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-kiona font-bold leading-none mb-4 sm:mb-6 uppercase tracking-wide">
-                25 anos de <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">experiência em</span><br />
-                loteamentos e infraestrutura
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-kiona font-bold leading-[1.1] mb-4 sm:mb-6 uppercase tracking-wide">
+                <span className="block lg:whitespace-nowrap">25 anos de experiência em</span>
+                <span className="block lg:whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">loteamentos e infraestrutura</span>
               </h1>
               <p className="text-gray-400 text-base sm:text-lg md:text-xl mb-6 sm:mb-10 max-w-xl lg:ml-auto font-light">
                 A solução completa para o seu empreendimento em São Paulo com alto padrão de qualidade.
@@ -230,7 +257,7 @@ export default function App() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="relative group overflow-hidden border-r border-white/5 min-h-[250px] sm:min-h-[300px]"
             >
-              <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=800" alt="Gabião" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100" />
+              <img src="https://images.unsplash.com/photo-1504307651254-35680f356db4?q=80&w=800" alt="Gabião" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#15191E] via-[#15191E]/50 to-transparent"></div>
               <div className="absolute top-6 sm:top-10 left-6 sm:left-8 right-6 sm:right-8">
                 <h3 className="text-xl sm:text-2xl font-kiona font-bold uppercase tracking-wide">Gabião</h3>
@@ -270,7 +297,7 @@ export default function App() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="relative group overflow-hidden border-r border-white/5 min-h-[250px] sm:min-h-[300px]"
             >
-              <img src="https://images.unsplash.com/photo-1541888087425-ce81dfc46928?q=80&w=800" alt="Infraestrutura" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100" />
+              <img src="https://images.unsplash.com/photo-1541888087425-ce81dfc46928?q=80&w=800" alt="Infraestrutura Urbana" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#15191E] via-[#15191E]/50 to-transparent"></div>
               <div className="absolute top-6 sm:top-10 left-6 sm:left-8 right-6 sm:right-8">
                 <h3 className="text-xl sm:text-2xl font-kiona font-bold uppercase tracking-wide">Infraestrutura<br/>Urbana</h3>
@@ -290,7 +317,7 @@ export default function App() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="relative group overflow-hidden min-h-[250px] sm:min-h-[300px]"
             >
-              <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800" alt="Urbanismo" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100" />
+              <img src="https://images.unsplash.com/photo-1449844908441-8829872d2607?q=80&w=800" alt="Urbanismo" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#15191E] via-[#15191E]/50 to-transparent"></div>
               <div className="absolute top-6 sm:top-10 left-6 sm:left-8 right-6 sm:right-8">
                 <h3 className="text-xl sm:text-2xl font-kiona font-bold uppercase tracking-wide">Urbanismo</h3>
@@ -344,11 +371,11 @@ export default function App() {
               className="flex flex-wrap justify-center gap-6 sm:gap-8 md:gap-12 lg:gap-16 items-center w-full"
             >
               {[
-                { name: 'Cipasa', src: '/logos/cipasa.png' },
+                { name: 'Cipasa', src: '/logos/cipasa_35_anos.png' },
                 { name: 'Alphaville', src: '/logos/alphaville.png' },
                 { name: 'Direcional', src: '/logos/direcional.png' },
                 { name: 'Zopone', src: '/logos/zopone.png' },
-                { name: 'Tamboré', src: '/logos/tambore.png' },
+                { name: 'Tamboré', src: '/logos/tambore_bauru.png' },
                 { name: 'Lote5', src: '/logos/lote5.png' },
                 { name: 'Five5', src: '/logos/five5.png' },
               ].map((client) => (
