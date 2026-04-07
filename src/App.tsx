@@ -364,7 +364,7 @@ export default function App() {
                 visible: { transition: { staggerChildren: 0.1 } },
                 hidden: {}
               }}
-              className="flex flex-wrap justify-center gap-6 sm:gap-8 md:gap-12 lg:gap-16 items-center w-full"
+              className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-10 md:gap-16 lg:gap-20 items-center justify-items-center max-w-6xl mx-auto"
             >
               {[
                 { name: 'Cipasa', src: '/logos/cipasa_35_anos.png' },
@@ -377,19 +377,19 @@ export default function App() {
               ].map((client) => (
                 <motion.div 
                   key={client.name}
-                  variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} 
-                  className="opacity-60 hover:opacity-100 transition-opacity duration-300 cursor-pointer flex justify-center items-center"
+                  variants={{ hidden: { opacity: 0, scale: 0.9 }, visible: { opacity: 1, scale: 1 } }} 
+                  className="group flex justify-center items-center w-full h-20 sm:h-24"
                 >
                   <img 
                     src={client.src} 
                     alt={client.name} 
-                    className="h-8 sm:h-10 md:h-12 lg:h-14 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-500" 
+                    className="max-h-12 sm:max-h-16 md:max-h-20 max-w-[120px] sm:max-w-[160px] md:max-w-[180px] object-contain opacity-40 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 will-change-[transform,filter,opacity] group-hover:scale-105" 
                     onError={(e) => {
                       e.currentTarget.style.display = 'none';
                       e.currentTarget.nextElementSibling?.classList.remove('hidden');
                     }}
                   />
-                  <span className="hidden text-center font-kiona font-bold text-xl md:text-2xl tracking-wider uppercase">
+                  <span className="hidden text-center font-kiona font-bold text-lg md:text-xl tracking-widest uppercase opacity-40 group-hover:opacity-100 transition-opacity duration-500">
                     {client.name}
                   </span>
                 </motion.div>
