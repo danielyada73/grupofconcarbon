@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Facebook, Twitter, Instagram, Linkedin, ArrowRight, ChevronLeft, ChevronRight, Menu, MapPin, Phone, Mail } from 'lucide-react';
-import { motion } from 'motion/react';
+import { Facebook, Twitter, Instagram, Linkedin, ArrowRight, ChevronLeft, ChevronRight, Menu, X, MapPin, Phone, Mail } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
 
 export default function App() {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,7 +15,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#15191E] text-white font-montserrat selection:bg-[#c5a47e] selection:text-white relative">
+    <div className="min-h-screen bg-[#15191E] text-white font-montserrat selection:bg-[#c5a47e] selection:text-white relative overflow-x-hidden">
       {/* Background Vertical Grid Lines */}
       <div className="fixed inset-0 pointer-events-none z-0 flex justify-evenly">
         <div className="w-px h-full bg-white/5"></div>
@@ -24,7 +25,7 @@ export default function App() {
       </div>
 
       {/* Left Fixed Sidebar */}
-      <div className="fixed left-0 top-0 h-full w-20 border-r border-white/10 bg-[#15191E]/80 backdrop-blur-sm z-50 flex flex-col items-center justify-between py-10 hidden lg:flex">
+      <div className="fixed left-0 top-0 h-full w-20 border-r border-white/10 bg-[#15191E]/80 backdrop-blur-sm z-50 flex flex-col items-center justify-between py-10 max-lg:hidden">
         <div className="text-[#c5a47e] font-kiona font-bold text-3xl">
           01 <span className="text-sm text-gray-500 font-normal">/ 03</span>
         </div>
@@ -47,30 +48,59 @@ export default function App() {
       <div className="lg:ml-20 relative z-10">
         
         {/* Header */}
-        <header className={`fixed top-0 lg:left-20 right-0 z-40 transition-all duration-300 ${scrolled ? 'bg-[#15191E]/95 backdrop-blur-md py-4 border-b border-white/10' : 'bg-transparent py-6'}`}>
-          <div className="container mx-auto px-8 flex justify-between items-center">
-            <div className="flex items-center gap-8">
-              <div className="text-3xl font-kiona font-bold tracking-wider flex items-center gap-2">
+        <header className={`fixed top-0 left-0 lg:left-20 right-0 z-40 transition-all duration-300 ${scrolled ? 'bg-[#15191E]/95 backdrop-blur-md py-3 md:py-4 border-b border-white/10' : 'bg-transparent py-4 md:py-6'}`}>
+          <div className="container mx-auto px-4 sm:px-6 md:px-8 flex justify-between items-center">
+            <div className="flex items-center gap-4 md:gap-8">
+              <div className="text-xl sm:text-2xl md:text-3xl font-kiona font-bold tracking-wider flex items-center gap-1 sm:gap-2">
                 <span className="text-white">FCON</span>
                 <span className="text-[#c5a47e]">CARBON</span>
               </div>
-              <div className="hidden md:block text-sm font-kiona text-gray-400 tracking-widest font-medium">
+              <div className="block text-sm font-kiona text-gray-400 tracking-widest font-medium max-md:hidden">
                 (11) 93740-8195
               </div>
             </div>
 
-            <nav className="hidden md:flex items-center gap-8 text-sm font-kiona font-semibold tracking-[0.2em] uppercase text-gray-300">
+            <nav className="flex items-center gap-6 lg:gap-8 text-sm font-kiona font-semibold tracking-[0.2em] uppercase text-gray-300 max-md:hidden">
               <a href="#" className="text-[#c5a47e]">Home</a>
               <a href="#about" className="hover:text-[#c5a47e] transition-colors">Serviços</a>
               <a href="#projects" className="hover:text-[#c5a47e] transition-colors">Portfólio</a>
               <a href="#contact" className="hover:text-[#c5a47e] transition-colors">Contato</a>
             </nav>
 
-            <button className="md:hidden text-white">
-              <Menu size={24} />
+            <button className="text-white p-2 max-md:block md:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </header>
+
+        {/* Mobile Menu Drawer */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 z-30 bg-[#15191E]/98 backdrop-blur-lg flex flex-col items-center justify-center gap-8 md:hidden"
+            >
+              <nav className="flex flex-col items-center gap-8 text-lg font-kiona font-semibold tracking-[0.2em] uppercase text-gray-300">
+                <a href="#" className="text-[#c5a47e]" onClick={() => setMobileMenuOpen(false)}>Home</a>
+                <a href="#about" className="hover:text-[#c5a47e] transition-colors" onClick={() => setMobileMenuOpen(false)}>Serviços</a>
+                <a href="#projects" className="hover:text-[#c5a47e] transition-colors" onClick={() => setMobileMenuOpen(false)}>Portfólio</a>
+                <a href="#contact" className="hover:text-[#c5a47e] transition-colors" onClick={() => setMobileMenuOpen(false)}>Contato</a>
+              </nav>
+              <div className="text-sm font-kiona text-gray-400 tracking-widest font-medium mt-4">
+                (11) 93740-8195
+              </div>
+              <div className="flex gap-6 text-gray-500 mt-4">
+                <a href="#" className="hover:text-[#c5a47e] transition-colors"><Instagram size={20} /></a>
+                <a href="#" className="hover:text-[#c5a47e] transition-colors"><Twitter size={20} /></a>
+                <a href="#" className="hover:text-[#c5a47e] transition-colors"><Linkedin size={20} /></a>
+                <a href="#" className="hover:text-[#c5a47e] transition-colors"><Facebook size={20} /></a>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Hero Section */}
         <section className="relative h-screen flex items-center">
@@ -83,8 +113,8 @@ export default function App() {
             <div className="absolute inset-0 bg-gradient-to-r from-[#15191E] via-[#15191E]/80 to-transparent"></div>
           </div>
 
-          <div className="container mx-auto px-8 relative z-10 flex justify-between items-center w-full">
-            <div className="hidden lg:flex items-center gap-4 text-sm font-kiona font-semibold tracking-[0.2em] text-gray-400 uppercase">
+          <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10 flex justify-between items-center w-full">
+            <div className="flex items-center gap-4 text-sm font-kiona font-semibold tracking-[0.2em] text-gray-400 uppercase max-lg:hidden">
               <button className="hover:text-[#c5a47e] flex items-center gap-2 transition-colors">
                 <ChevronLeft size={16} /> Prev
               </button>
@@ -99,15 +129,15 @@ export default function App() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="max-w-3xl lg:ml-auto lg:text-right"
             >
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-kiona font-bold leading-none mb-6 uppercase tracking-wide">
+              <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-kiona font-bold leading-none mb-4 sm:mb-6 uppercase tracking-wide">
                 25 anos de <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">experiência em</span><br />
                 loteamentos e infraestrutura
               </h1>
-              <p className="text-gray-400 text-lg md:text-xl mb-10 max-w-xl lg:ml-auto font-light">
+              <p className="text-gray-400 text-base sm:text-lg md:text-xl mb-6 sm:mb-10 max-w-xl lg:ml-auto font-light">
                 A solução completa para o seu empreendimento em São Paulo com alto padrão de qualidade.
               </p>
-              <button className="bg-[#c5a47e] hover:bg-[#b08d65] text-white text-sm font-kiona font-bold tracking-[0.2em] uppercase py-4 px-8 rounded-sm transition-all flex items-center gap-3 lg:ml-auto">
+              <button className="bg-[#c5a47e] hover:bg-[#b08d65] text-white text-xs sm:text-sm font-kiona font-bold tracking-[0.15em] sm:tracking-[0.2em] uppercase py-3 sm:py-4 px-6 sm:px-8 rounded-sm transition-all flex items-center gap-3 lg:ml-auto">
                 Solicitar Orçamento <ArrowRight size={16} />
               </button>
             </motion.div>
@@ -115,27 +145,27 @@ export default function App() {
         </section>
 
         {/* About Section */}
-        <section id="about" className="relative py-32 overflow-hidden border-b border-white/5">
-          <div className="absolute top-0 left-0 text-[20rem] font-kiona font-bold text-white/[0.02] leading-none select-none -z-10 -translate-y-1/4 -translate-x-10">
+        <section id="about" className="relative py-16 sm:py-24 md:py-32 overflow-hidden border-b border-white/5">
+          <div className="absolute top-0 left-0 text-[10rem] md:text-[20rem] font-kiona font-bold text-white/[0.02] leading-none select-none -z-10 -translate-y-1/4 -translate-x-10">
             Ab
           </div>
           
-          <div className="container mx-auto px-8">
-            <div className="text-center mb-24">
-              <h2 className="text-sm font-kiona text-[#c5a47e] tracking-[0.3em] uppercase font-bold">Sobre a Fcon Carbon</h2>
+          <div className="container mx-auto px-4 sm:px-6 md:px-8">
+            <div className="text-center mb-12 sm:mb-16 md:mb-24">
+              <h2 className="text-xs sm:text-sm font-kiona text-[#c5a47e] tracking-[0.3em] uppercase font-bold">Sobre a Fcon Carbon</h2>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-14 md:gap-20">
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8 }}
               >
-                <h3 className="text-3xl md:text-5xl font-kiona font-bold mb-8 leading-tight uppercase">
+                <h3 className="text-2xl sm:text-3xl md:text-5xl font-kiona font-bold mb-6 sm:mb-8 leading-tight uppercase">
                   Atuação técnica em loteamentos, infraestrutura urbana e edificações de apoio.
                 </h3>
-                <p className="text-gray-400 leading-relaxed mb-10 font-light text-lg">
+                <p className="text-gray-400 leading-relaxed mb-6 sm:mb-10 font-light text-base sm:text-lg">
                   Com experiência acumulada em obras que exigem escala, organização e capacidade de entrega em São Paulo. Nossa equipe estabelece relacionamentos sólidos com parceiros para criar valor agregado em cada projeto.
                 </p>
                 <a href="#" className="text-sm font-kiona font-semibold text-white tracking-[0.2em] uppercase border-b border-[#c5a47e] pb-1 hover:text-[#c5a47e] transition-colors">
@@ -186,27 +216,27 @@ export default function App() {
         </section>
 
         {/* Projects Section */}
-        <section id="projects" className="py-32 border-b border-white/5">
-          <div className="container mx-auto px-8 mb-16">
-            <h2 className="text-sm font-kiona text-[#c5a47e] tracking-[0.3em] uppercase font-bold text-center">Alguns dos nossos projetos</h2>
+        <section id="projects" className="py-16 sm:py-24 md:py-32 border-b border-white/5">
+          <div className="container mx-auto px-4 sm:px-6 md:px-8 mb-10 sm:mb-16">
+            <h2 className="text-xs sm:text-sm font-kiona text-[#c5a47e] tracking-[0.3em] uppercase font-bold text-center">Alguns dos nossos projetos</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 h-[600px] w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 min-h-[300px] sm:min-h-[400px] md:h-[600px] w-full">
             {/* Project 1 */}
             <motion.div 
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="relative group overflow-hidden border-r border-white/5"
+              className="relative group overflow-hidden border-r border-white/5 min-h-[250px] sm:min-h-[300px]"
             >
               <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=800" alt="Gabião" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#15191E] via-[#15191E]/50 to-transparent"></div>
-              <div className="absolute top-10 left-8 right-8">
-                <h3 className="text-2xl font-kiona font-bold uppercase tracking-wide">Gabião</h3>
+              <div className="absolute top-6 sm:top-10 left-6 sm:left-8 right-6 sm:right-8">
+                <h3 className="text-xl sm:text-2xl font-kiona font-bold uppercase tracking-wide">Gabião</h3>
               </div>
-              <div className="absolute bottom-10 left-8">
-                <div className="transform -rotate-90 origin-bottom-left whitespace-nowrap text-sm font-kiona font-semibold tracking-[0.3em] text-[#c5a47e] uppercase">
+              <div className="absolute bottom-6 sm:bottom-10 left-6 sm:left-8">
+                <div className="transform -rotate-90 origin-bottom-left whitespace-nowrap text-xs sm:text-sm font-kiona font-semibold tracking-[0.3em] text-[#c5a47e] uppercase">
                   Infraestrutura
                 </div>
               </div>
@@ -218,15 +248,15 @@ export default function App() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative group overflow-hidden border-r border-white/5"
+              className="relative group overflow-hidden border-r border-white/5 min-h-[250px] sm:min-h-[300px]"
             >
               <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=800" alt="Portarias e Club House" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#15191E] via-[#15191E]/50 to-transparent"></div>
-              <div className="absolute top-10 left-8 right-8">
-                <h3 className="text-2xl font-kiona font-bold uppercase tracking-wide">Portarias e<br/>Club House</h3>
+              <div className="absolute top-6 sm:top-10 left-6 sm:left-8 right-6 sm:right-8">
+                <h3 className="text-xl sm:text-2xl font-kiona font-bold uppercase tracking-wide">Portarias e<br/>Club House</h3>
               </div>
-              <div className="absolute bottom-10 left-8">
-                <div className="transform -rotate-90 origin-bottom-left whitespace-nowrap text-sm font-kiona font-semibold tracking-[0.3em] text-[#c5a47e] uppercase">
+              <div className="absolute bottom-6 sm:bottom-10 left-6 sm:left-8">
+                <div className="transform -rotate-90 origin-bottom-left whitespace-nowrap text-xs sm:text-sm font-kiona font-semibold tracking-[0.3em] text-[#c5a47e] uppercase">
                   Edificações
                 </div>
               </div>
@@ -238,15 +268,15 @@ export default function App() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="relative group overflow-hidden border-r border-white/5"
+              className="relative group overflow-hidden border-r border-white/5 min-h-[250px] sm:min-h-[300px]"
             >
               <img src="https://images.unsplash.com/photo-1541888087425-ce81dfc46928?q=80&w=800" alt="Infraestrutura" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#15191E] via-[#15191E]/50 to-transparent"></div>
-              <div className="absolute top-10 left-8 right-8">
-                <h3 className="text-2xl font-kiona font-bold uppercase tracking-wide">Infraestrutura<br/>Urbana</h3>
+              <div className="absolute top-6 sm:top-10 left-6 sm:left-8 right-6 sm:right-8">
+                <h3 className="text-xl sm:text-2xl font-kiona font-bold uppercase tracking-wide">Infraestrutura<br/>Urbana</h3>
               </div>
-              <div className="absolute bottom-10 left-8">
-                <div className="transform -rotate-90 origin-bottom-left whitespace-nowrap text-sm font-kiona font-semibold tracking-[0.3em] text-[#c5a47e] uppercase">
+              <div className="absolute bottom-6 sm:bottom-10 left-6 sm:left-8">
+                <div className="transform -rotate-90 origin-bottom-left whitespace-nowrap text-xs sm:text-sm font-kiona font-semibold tracking-[0.3em] text-[#c5a47e] uppercase">
                   Loteamentos
                 </div>
               </div>
@@ -258,15 +288,15 @@ export default function App() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="relative group overflow-hidden"
+              className="relative group overflow-hidden min-h-[250px] sm:min-h-[300px]"
             >
               <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800" alt="Urbanismo" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#15191E] via-[#15191E]/50 to-transparent"></div>
-              <div className="absolute top-10 left-8 right-8">
-                <h3 className="text-2xl font-kiona font-bold uppercase tracking-wide">Urbanismo</h3>
+              <div className="absolute top-6 sm:top-10 left-6 sm:left-8 right-6 sm:right-8">
+                <h3 className="text-xl sm:text-2xl font-kiona font-bold uppercase tracking-wide">Urbanismo</h3>
               </div>
-              <div className="absolute bottom-10 left-8">
-                <div className="transform -rotate-90 origin-bottom-left whitespace-nowrap text-sm font-kiona font-semibold tracking-[0.3em] text-[#c5a47e] uppercase">
+              <div className="absolute bottom-6 sm:bottom-10 left-6 sm:left-8">
+                <div className="transform -rotate-90 origin-bottom-left whitespace-nowrap text-xs sm:text-sm font-kiona font-semibold tracking-[0.3em] text-[#c5a47e] uppercase">
                   Planejamento
                 </div>
               </div>
@@ -275,32 +305,32 @@ export default function App() {
         </section>
 
         {/* Stats Section */}
-        <section className="py-32 border-b border-white/5 relative overflow-hidden">
+        <section className="py-16 sm:py-24 md:py-32 border-b border-white/5 relative overflow-hidden">
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
-            className="container mx-auto px-8 flex flex-col items-center justify-center text-center"
+            className="container mx-auto px-4 sm:px-6 md:px-8 flex flex-col items-center justify-center text-center"
           >
-            <div className="text-[12rem] md:text-[18rem] font-kiona font-bold text-transparent bg-clip-text bg-gradient-to-b from-[#c5a47e] to-[#c5a47e]/20 leading-none mb-4" style={{ WebkitTextStroke: '1px rgba(197, 164, 126, 0.3)' }}>
+            <div className="text-[7rem] sm:text-[10rem] md:text-[14rem] lg:text-[18rem] font-kiona font-bold text-transparent bg-clip-text bg-gradient-to-b from-[#c5a47e] to-[#c5a47e]/20 leading-none mb-4" style={{ WebkitTextStroke: '1px rgba(197, 164, 126, 0.3)' }}>
               25
             </div>
-            <div className="text-sm md:text-lg font-kiona font-semibold tracking-[0.3em] uppercase text-gray-300 max-w-lg">
+            <div className="text-xs sm:text-sm md:text-lg font-kiona font-semibold tracking-[0.2em] sm:tracking-[0.3em] uppercase text-gray-300 max-w-xs sm:max-w-lg px-4">
               Anos de experiência em loteamentos e infraestrutura de alto padrão
             </div>
           </motion.div>
         </section>
 
         {/* Clients Section */}
-        <section className="py-32 relative overflow-hidden border-b border-white/5">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[15rem] font-kiona font-bold text-white/[0.02] leading-none select-none -z-10 w-full text-center">
+        <section className="py-16 sm:py-24 md:py-32 relative overflow-hidden border-b border-white/5">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[6rem] md:text-[15rem] font-kiona font-bold text-white/[0.02] leading-none select-none -z-10 w-full text-center">
             clients
           </div>
 
-          <div className="container mx-auto px-8">
-            <div className="text-center mb-20">
-              <h2 className="text-sm font-kiona text-[#c5a47e] tracking-[0.3em] uppercase font-bold">Nossos Clientes</h2>
+          <div className="container mx-auto px-4 sm:px-6 md:px-8">
+            <div className="text-center mb-10 sm:mb-16 md:mb-20">
+              <h2 className="text-xs sm:text-sm font-kiona text-[#c5a47e] tracking-[0.3em] uppercase font-bold">Nossos Clientes</h2>
             </div>
 
             <motion.div 
@@ -311,7 +341,7 @@ export default function App() {
                 visible: { transition: { staggerChildren: 0.1 } },
                 hidden: {}
               }}
-              className="flex flex-wrap justify-center gap-8 md:gap-12 lg:gap-16 items-center w-full"
+              className="flex flex-wrap justify-center gap-6 sm:gap-8 md:gap-12 lg:gap-16 items-center w-full"
             >
               {[
                 { name: 'Cipasa', src: '/logos/cipasa.png' },
@@ -343,8 +373,8 @@ export default function App() {
               ))}
             </motion.div>
 
-            <div className="mt-20 text-center">
-              <button className="bg-transparent border border-[#c5a47e] text-[#c5a47e] hover:bg-[#c5a47e] hover:text-white text-sm font-kiona font-bold tracking-[0.2em] uppercase py-4 px-10 rounded-sm transition-all inline-flex items-center gap-3">
+            <div className="mt-10 sm:mt-16 md:mt-20 text-center">
+              <button className="bg-transparent border border-[#c5a47e] text-[#c5a47e] hover:bg-[#c5a47e] hover:text-white text-xs sm:text-sm font-kiona font-bold tracking-[0.15em] sm:tracking-[0.2em] uppercase py-3 sm:py-4 px-6 sm:px-10 rounded-sm transition-all inline-flex items-center gap-3">
                 Trabalhe Conosco <ArrowRight size={16} />
               </button>
             </div>
@@ -352,28 +382,28 @@ export default function App() {
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="py-32 relative overflow-hidden">
-          <div className="absolute top-0 right-0 text-[15rem] font-kiona font-bold text-white/[0.02] leading-none select-none -z-10 translate-x-1/4">
+        <section id="contact" className="py-16 sm:py-24 md:py-32 relative overflow-hidden">
+          <div className="absolute top-0 right-0 text-[6rem] md:text-[15rem] font-kiona font-bold text-white/[0.02] leading-none select-none -z-10 translate-x-1/4">
             ontacts
           </div>
 
-          <div className="container mx-auto px-8">
-            <div className="text-center mb-24">
-              <h2 className="text-sm font-kiona text-[#c5a47e] tracking-[0.3em] uppercase font-bold">A conversa começa aqui</h2>
+          <div className="container mx-auto px-4 sm:px-6 md:px-8">
+            <div className="text-center mb-12 sm:mb-16 md:mb-24">
+              <h2 className="text-xs sm:text-sm font-kiona text-[#c5a47e] tracking-[0.3em] uppercase font-bold">A conversa começa aqui</h2>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-14 md:gap-20">
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8 }}
               >
-                <h3 className="text-4xl md:text-6xl font-kiona font-bold mb-10 leading-tight uppercase">
+                <h3 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-kiona font-bold mb-6 sm:mb-10 leading-tight uppercase">
                   Se o seu projeto exige capacidade técnica, escala e previsibilidade.
                 </h3>
                 
-                <div className="space-y-6 mt-16">
+                <div className="space-y-4 sm:space-y-6 mt-8 sm:mt-12 md:mt-16">
                   <div className="flex items-center gap-4 text-gray-400 font-light">
                     <Phone className="text-[#c5a47e]" size={20} />
                     <span className="tracking-wider">(11) 93740-8195</span>
@@ -394,7 +424,7 @@ export default function App() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="bg-[#26292c] p-10 border border-white/5 relative"
+                className="bg-[#26292c] p-6 sm:p-8 md:p-10 border border-white/5 relative"
               >
                 <div className="absolute top-0 left-0 w-full h-1 bg-[#c5a47e]"></div>
                 <h4 className="text-sm font-kiona tracking-[0.2em] uppercase mb-8 font-bold">Preencha o Formulário abaixo</h4>
@@ -453,17 +483,17 @@ export default function App() {
         </section>
 
         {/* Footer */}
-        <footer className="bg-[#111] pt-20 pb-10 border-t border-white/10">
+        <footer className="bg-[#111] pt-12 sm:pt-16 md:pt-20 pb-8 sm:pb-10 border-t border-white/10">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="container mx-auto px-8"
+            className="container mx-auto px-4 sm:px-6 md:px-8"
           >
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-10 md:gap-12 mb-10 sm:mb-16">
               <div>
-                <div className="text-3xl font-kiona font-bold tracking-wider flex items-center gap-2 mb-6">
+                <div className="text-2xl sm:text-3xl font-kiona font-bold tracking-wider flex items-center gap-2 mb-4 sm:mb-6">
                   <span className="text-white">FCON</span>
                   <span className="text-[#c5a47e]">CARBON</span>
                 </div>
@@ -494,7 +524,7 @@ export default function App() {
               </div>
             </div>
 
-            <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-600">
+            <div className="border-t border-white/10 pt-6 sm:pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] sm:text-xs text-gray-600">
               <div className="font-bold tracking-wider text-white">
                 FCON <span className="text-[#c5a47e]">CARBON</span>
               </div>
