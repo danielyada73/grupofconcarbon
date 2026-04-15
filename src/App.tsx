@@ -6,6 +6,32 @@ export default function App() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [currentHeroImage, setCurrentHeroImage] = useState(0);
+  const [formStatus, setFormStatus] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleEmailSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setFormStatus('');
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch('/send_email.php', {
+        method: 'POST',
+        body: formData
+      });
+      if (response.ok) {
+        setFormStatus('success');
+        form.reset();
+      } else {
+        setFormStatus('error');
+      }
+    } catch (error) {
+      setFormStatus('error');
+    }
+    setIsSubmitting(false);
+  };
 
   const heroMedia = [
     { type: 'youtube', src: 'f6p4Hk9CWbU' },
@@ -503,16 +529,20 @@ export default function App() {
                 <div className="absolute top-0 left-0 w-full h-1 bg-[#c5a47e]"></div>
                 <h4 className="text-sm font-kiona tracking-[0.2em] uppercase mb-8 font-bold">Preencha o Formulário abaixo</h4>
                 
-                <form className="space-y-8">
+                <form className="space-y-8" onSubmit={handleEmailSubmit}>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <input 
                       type="text" 
+                      name="nome"
                       placeholder="Nome Completo" 
+                      required
                       className="w-full bg-transparent border-b border-white/20 pb-3 text-sm focus:outline-none focus:border-[#c5a47e] transition-colors placeholder-gray-600"
                     />
                     <input 
                       type="tel" 
+                      name="telefone"
                       placeholder="Telefone" 
+                      required
                       className="w-full bg-transparent border-b border-white/20 pb-3 text-sm focus:outline-none focus:border-[#c5a47e] transition-colors placeholder-gray-600"
                     />
                   </div>
@@ -520,11 +550,12 @@ export default function App() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <input 
                       type="email" 
+                      name="email"
                       placeholder="E-mail*" 
                       required
                       className="w-full bg-transparent border-b border-white/20 pb-3 text-sm focus:outline-none focus:border-[#c5a47e] transition-colors placeholder-gray-600"
                     />
-                    <select defaultValue="" className="w-full bg-transparent border-b border-white/20 pb-3 text-sm focus:outline-none focus:border-[#c5a47e] transition-colors text-gray-400 appearance-none">
+                    <select name="cargo" defaultValue="" required className="w-full bg-transparent border-b border-white/20 pb-3 text-sm focus:outline-none focus:border-[#c5a47e] transition-colors text-gray-400 appearance-none">
                       <option value="" disabled>Cargo na empresa</option>
                       <option value="diretor" className="bg-[#1a1a1a]">Diretor</option>
                       <option value="gerente" className="bg-[#1a1a1a]">Gerente</option>
@@ -532,7 +563,7 @@ export default function App() {
                     </select>
                   </div>
 
-                  <select defaultValue="" className="w-full bg-transparent border-b border-white/20 pb-3 text-sm focus:outline-none focus:border-[#c5a47e] transition-colors text-gray-400 appearance-none">
+                  <select name="projeto" defaultValue="" required className="w-full bg-transparent border-b border-white/20 pb-3 text-sm focus:outline-none focus:border-[#c5a47e] transition-colors text-gray-400 appearance-none">
                     <option value="" disabled>Tipo de Projeto</option>
                     <option value="infraestrutura" className="bg-[#1a1a1a]">Infraestrutura urbana</option>
                     <option value="loteamento" className="bg-[#1a1a1a]">Loteamento</option>
@@ -540,14 +571,19 @@ export default function App() {
                   </select>
 
                   <textarea 
+                    name="mensagem"
                     placeholder="Mensagem" 
                     rows={4}
+                    required
                     className="w-full bg-transparent border-b border-white/20 pb-3 text-sm focus:outline-none focus:border-[#c5a47e] transition-colors placeholder-gray-600 resize-none"
                   ></textarea>
 
+                  {formStatus === 'success' && <div className="text-green-500 text-sm font-semibold text-center mt-4 tracking-wider">MENSAGEM ENVIADA COM SUCESSO! A EQUIPE ENTRARÁ EM CONTATO.</div>}
+                  {formStatus === 'error' && <div className="text-red-500 text-sm font-semibold text-center mt-4 tracking-wider">ERRO AO ENVIAR MENSAGEM. TENTE NOVAMENTE MAIS TARDE.</div>}
+
                   <div className="flex justify-end pt-4">
-                    <button type="submit" className="bg-[#c5a47e] hover:bg-[#b08d65] text-white text-sm font-kiona font-bold tracking-[0.2em] uppercase py-4 px-10 rounded-sm transition-all flex items-center gap-3">
-                      Solicitar Orçamento <ArrowRight size={16} />
+                    <button type="submit" disabled={isSubmitting} className="bg-[#c5a47e] hover:bg-[#b08d65] cursor-pointer text-white text-sm font-kiona font-bold tracking-[0.2em] uppercase py-4 px-10 rounded-sm transition-all flex items-center gap-3 disabled:opacity-50">
+                      {isSubmitting ? 'Enviando...' : 'Solicitar Orçamento'} <ArrowRight size={16} />
                     </button>
                   </div>
                 </form>
@@ -598,12 +634,9 @@ export default function App() {
               </div>
             </div>
 
-            <div className="border-t border-white/10 pt-6 sm:pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] sm:text-xs text-gray-600">
-              <div className="font-bold tracking-wider text-white">
-                FCON <span className="text-[#c5a47e]">CARBON</span>
-              </div>
-              <div className="text-center">
-                © 2026 Carbon FCON. Todos os direitos reservados. Site Desenvolvido por <a href="#" className="text-[#c5a47e] hover:underline">Alpha Marketing Digital</a>
+            <div className="border-t border-white/10 pt-6 sm:pt-8 flex justify-center items-center text-[10px] sm:text-xs text-gray-600 text-center">
+              <div>
+                © 2026 Fcon Carbon. Todos os direitos reservados. Site Desenvolvido por <a href="#" className="text-[#c5a47e] hover:underline">Alpha Marketing Digital</a>
               </div>
             </div>
           </motion.div>
