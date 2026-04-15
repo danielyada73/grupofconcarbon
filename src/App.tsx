@@ -16,10 +16,27 @@ export default function App() {
     const form = e.currentTarget;
     const formData = new FormData(form);
 
+    const payload = {
+      _subject: 'Fcon/Carbon "Novo Contato"',
+      _cc: 'fabricio@fcon.com.br,contato@carbonconstrucoes.com.br',
+      _captcha: 'false',
+      _template: 'box',
+      Nome: formData.get('nome'),
+      Telefone: formData.get('telefone'),
+      Email: formData.get('email'),
+      Cargo: formData.get('cargo'),
+      Projeto: formData.get('projeto'),
+      Mensagem: formData.get('mensagem')
+    };
+
     try {
-      const response = await fetch('/send_email.php', {
+      const response = await fetch('https://formsubmit.co/ajax/alpha.clientesleads@gmail.com', {
         method: 'POST',
-        body: formData
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(payload)
       });
       if (response.ok) {
         setFormStatus('success');
