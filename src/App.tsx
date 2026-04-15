@@ -7,16 +7,18 @@ export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [currentHeroImage, setCurrentHeroImage] = useState(0);
 
-  const heroImages = [
-    "https://images.unsplash.com/photo-1541888087425-ce81dfc46928?q=80&w=2000",
-    "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2000",
-    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2000",
-    "https://images.unsplash.com/photo-1449844908441-8829872d2607?q=80&w=2000"
+  const heroMedia = [
+    { type: 'video', src: 'https://drive.google.com/uc?export=download&id=1BzOuoNvwe3H8LhhCVW0rdYoWkZDYN6hN#t=5' },
+    { type: 'image', src: 'https://drive.google.com/uc?export=view&id=1GrdlehQFNLSyKJ2e41LQf2Dv4QTnpAzH' },
+    { type: 'image', src: 'https://drive.google.com/uc?export=view&id=17t81KRJVULC3IohMjgUkTwIf0PDgW2Pr' },
+    { type: 'image', src: 'https://drive.google.com/uc?export=view&id=1_uItFPRJL3jZVfbhf4PSYrnIW30gN_oi' },
+    { type: 'image', src: 'https://drive.google.com/uc?export=view&id=1RRyManbrAuLxg0PKuS8Fu9pkQ5hbkx-Q' },
+    { type: 'image', src: 'https://drive.google.com/uc?export=view&id=1Kks75AGidDGednkCJfO9A_LkR54H9fQm' }
   ];
 
   useEffect(() => {
     const slideInterval = setInterval(() => {
-      setCurrentHeroImage((prev) => (prev + 1) % heroImages.length);
+      setCurrentHeroImage((prev) => (prev + 1) % heroMedia.length);
     }, 6000);
     return () => clearInterval(slideInterval);
   }, []);
@@ -117,16 +119,37 @@ export default function App() {
         <section className="relative h-screen flex items-center overflow-hidden">
           <div className="absolute inset-0 z-0 bg-[#15191E]">
             <AnimatePresence mode="popLayout">
-              <motion.img
-                key={currentHeroImage}
-                src={heroImages[currentHeroImage]}
-                alt="Infraestrutura FCON Carbon"
-                initial={{ opacity: 0, scale: 1.05 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 1.5, ease: "easeInOut" }}
-                className="absolute inset-0 w-full h-full object-cover"
-              />
+              {heroMedia[currentHeroImage].type === 'image' ? (
+                <motion.img
+                  key={`img-${currentHeroImage}`}
+                  src={heroMedia[currentHeroImage].src}
+                  alt="FCON Carbon Urbanização"
+                  initial={{ opacity: 0, scale: 1.05 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 1.5, ease: "easeInOut" }}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              ) : (
+                <motion.video
+                  key={`vid-${currentHeroImage}`}
+                  src={heroMedia[currentHeroImage].src}
+                  autoPlay
+                  muted
+                  playsInline
+                  initial={{ opacity: 0, scale: 1.05 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 1.5, ease: "easeInOut" }}
+                  className="absolute inset-0 w-full h-full object-cover"
+                  onTimeUpdate={(e) => {
+                    const video = e.currentTarget;
+                    if (video.currentTime >= 15) {
+                      video.currentTime = 5;
+                    }
+                  }}
+                />
+              )}
             </AnimatePresence>
             <div className="absolute inset-0 bg-gradient-to-r from-[#15191E] via-[#15191E]/80 to-[#15191E]/20"></div>
           </div>
@@ -134,13 +157,13 @@ export default function App() {
           <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10 flex justify-between items-center w-full">
             <div className="flex items-center gap-4 text-sm font-kiona font-semibold tracking-[0.2em] text-gray-400 uppercase max-lg:hidden lg:flex">
               <button 
-                onClick={() => setCurrentHeroImage((prev) => (prev - 1 + heroImages.length) % heroImages.length)}
+                onClick={() => setCurrentHeroImage((prev) => (prev - 1 + heroMedia.length) % heroMedia.length)}
                 className="hover:text-[#c5a47e] flex items-center gap-2 transition-colors z-20 cursor-pointer"
               >
                 <ChevronLeft size={16} /> Prev
               </button>
               <button 
-                onClick={() => setCurrentHeroImage((prev) => (prev + 1) % heroImages.length)}
+                onClick={() => setCurrentHeroImage((prev) => (prev + 1) % heroMedia.length)}
                 className="hover:text-[#c5a47e] flex items-center gap-2 transition-colors z-20 cursor-pointer"
               >
                 Next <ChevronRight size={16} />
