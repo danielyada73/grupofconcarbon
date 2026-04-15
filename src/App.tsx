@@ -67,8 +67,8 @@ export default function App() {
           <div className="container mx-auto px-4 sm:px-6 md:px-8 flex justify-between items-center">
             <div className="flex items-center gap-4 md:gap-8">
               <div className="text-xl sm:text-2xl md:text-3xl font-kiona font-bold tracking-wider flex items-center gap-4 sm:gap-6">
-                <img src="/logo-fcon-engenharia-construcoes-01-custom-276x276%201.png" alt="FCON" className="h-8 sm:h-12 w-auto object-contain brightness-0 invert" />
-                <img src="/logo-carbon-construcoes-instalacoes-aprovado-03-medium-1%201.png" alt="CARBON" className="h-6 sm:h-8 w-auto object-contain brightness-0 invert" />
+                <img src="/logo-fcon-engenharia-construcoes-01-custom-276x276%201.png.png" alt="FCON" className="h-8 sm:h-12 w-auto object-contain brightness-0 invert" />
+                <img src="/logo-carbon-construcoes-instalacoes-aprovado-03-medium-1%201.png.png" alt="CARBON" className="h-6 sm:h-8 w-auto object-contain brightness-0 invert" />
               </div>
               <div className="hidden md:block text-sm font-kiona text-gray-400 tracking-widest font-medium">
                 (11) 93740-8195
@@ -433,7 +433,7 @@ export default function App() {
                     <img 
                       src={client.src} 
                       alt={client.name} 
-                      className="max-h-12 sm:max-h-16 md:max-h-20 max-w-[120px] sm:max-w-[160px] md:max-w-[180px] object-contain opacity-40 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" 
+                      className="max-h-12 sm:max-h-16 md:max-h-20 max-w-[120px] sm:max-w-[160px] md:max-w-[180px] object-contain opacity-60 hover:opacity-100 transition-all duration-300 brightness-0 invert" 
                       onError={(e) => {
                         e.currentTarget.style.display = 'none';
                         e.currentTarget.nextElementSibling?.classList.remove('hidden');
@@ -568,8 +568,8 @@ export default function App() {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-10 md:gap-12 mb-10 sm:mb-16">
               <div>
                 <div className="text-xl sm:text-2xl md:text-3xl font-kiona font-bold tracking-wider flex items-center gap-4 mb-4 sm:mb-6">
-                  <img src="/logo-fcon-engenharia-construcoes-01-custom-276x276%201.png" alt="FCON" className="h-8 sm:h-12 w-auto object-contain brightness-0 invert" />
-                  <img src="/logo-carbon-construcoes-instalacoes-aprovado-03-medium-1%201.png" alt="CARBON" className="h-6 sm:h-8 w-auto object-contain brightness-0 invert" />
+                  <img src="/logo-fcon-engenharia-construcoes-01-custom-276x276%201.png.png" alt="FCON" className="h-8 sm:h-12 w-auto object-contain brightness-0 invert" />
+                  <img src="/logo-carbon-construcoes-instalacoes-aprovado-03-medium-1%201.png.png" alt="CARBON" className="h-6 sm:h-8 w-auto object-contain brightness-0 invert" />
                 </div>
                 <p className="text-gray-500 text-sm leading-relaxed max-w-xs font-light">
                   Construções e Infraestrutura.<br/>
