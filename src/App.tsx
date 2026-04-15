@@ -47,7 +47,7 @@ export default function App() {
         
         <div className="flex-1 flex items-center justify-center">
           <div className="transform -rotate-90 whitespace-nowrap text-xs tracking-[0.3em] text-gray-400 uppercase font-kiona font-semibold">
-            Construções e Infraestrutura
+            Urbanização e Alto Padrão
           </div>
         </div>
 
@@ -155,7 +155,7 @@ export default function App() {
             >
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-[5rem] font-kiona font-bold leading-tight mb-4 sm:mb-6 uppercase tracking-wider">
                 <span className="block mb-2 md:mb-0">25 anos de experiência em</span>
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 leading-tight">loteamentos e infraestrutura</span>
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 leading-tight">urbanização</span>
               </h1>
               <p className="text-gray-400 text-base sm:text-lg md:text-xl mb-6 sm:mb-10 max-w-xl lg:ml-auto font-light">
                 A solução completa para o seu empreendimento em São Paulo com alto padrão de qualidade.
@@ -260,7 +260,7 @@ export default function App() {
               </div>
               <div className="absolute bottom-6 sm:bottom-10 left-6 sm:left-8">
                 <div className="transform -rotate-90 origin-bottom-left whitespace-nowrap text-xs sm:text-sm font-kiona font-semibold tracking-[0.3em] text-[#c5a47e] uppercase">
-                  Infraestrutura
+                  Obras Especiais
                 </div>
               </div>
             </motion.div>
@@ -280,7 +280,7 @@ export default function App() {
               </div>
               <div className="absolute bottom-6 sm:bottom-10 left-6 sm:left-8">
                 <div className="transform -rotate-90 origin-bottom-left whitespace-nowrap text-xs sm:text-sm font-kiona font-semibold tracking-[0.3em] text-[#c5a47e] uppercase">
-                  Edificações
+                  Urbanização e Alto Padrão
                 </div>
               </div>
             </motion.div>
@@ -300,7 +300,7 @@ export default function App() {
               </div>
               <div className="absolute bottom-6 sm:bottom-10 left-6 sm:left-8">
                 <div className="transform -rotate-90 origin-bottom-left whitespace-nowrap text-xs sm:text-sm font-kiona font-semibold tracking-[0.3em] text-[#c5a47e] uppercase">
-                  Loteamentos
+                  Infraestrutura
                 </div>
               </div>
             </motion.div>
@@ -313,14 +313,14 @@ export default function App() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="relative group overflow-hidden min-h-[250px] sm:min-h-[300px]"
             >
-              <img src="/Urbanismo.jpg" alt="Urbanismo" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100" />
+              <img src="/Urbanismo.jpg" alt="Obras Comerciais" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#15191E] via-[#15191E]/50 to-transparent"></div>
               <div className="absolute top-6 sm:top-10 left-6 sm:left-8 right-6 sm:right-8">
-                <h3 className="text-xl sm:text-2xl font-kiona font-bold uppercase tracking-wide">Urbanismo</h3>
+                <h3 className="text-xl sm:text-2xl font-kiona font-bold uppercase tracking-wide">Obras Comerciais</h3>
               </div>
               <div className="absolute bottom-6 sm:bottom-10 left-6 sm:left-8">
                 <div className="transform -rotate-90 origin-bottom-left whitespace-nowrap text-xs sm:text-sm font-kiona font-semibold tracking-[0.3em] text-[#c5a47e] uppercase">
-                  Planejamento
+                  Execução
                 </div>
               </div>
             </motion.div>
@@ -340,7 +340,7 @@ export default function App() {
               25
             </div>
             <div className="text-xs sm:text-sm md:text-lg font-kiona font-semibold tracking-[0.2em] sm:tracking-[0.3em] uppercase text-gray-300 max-w-xs sm:max-w-lg px-4">
-              Anos de experiência em loteamentos e infraestrutura de alto padrão
+              Anos de experiência em urbanização de alto padrão
             </div>
           </motion.div>
         </section>
