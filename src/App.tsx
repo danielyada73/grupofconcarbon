@@ -9,11 +9,11 @@ export default function App() {
 
   const heroMedia = [
     { type: 'video', src: 'https://drive.google.com/uc?export=download&id=1BzOuoNvwe3H8LhhCVW0rdYoWkZDYN6hN#t=5' },
-    { type: 'image', src: 'https://drive.google.com/uc?export=view&id=1GrdlehQFNLSyKJ2e41LQf2Dv4QTnpAzH' },
-    { type: 'image', src: 'https://drive.google.com/uc?export=view&id=17t81KRJVULC3IohMjgUkTwIf0PDgW2Pr' },
-    { type: 'image', src: 'https://drive.google.com/uc?export=view&id=1_uItFPRJL3jZVfbhf4PSYrnIW30gN_oi' },
-    { type: 'image', src: 'https://drive.google.com/uc?export=view&id=1RRyManbrAuLxg0PKuS8Fu9pkQ5hbkx-Q' },
-    { type: 'image', src: 'https://drive.google.com/uc?export=view&id=1Kks75AGidDGednkCJfO9A_LkR54H9fQm' }
+    { type: 'image', src: 'https://drive.google.com/thumbnail?id=1GrdlehQFNLSyKJ2e41LQf2Dv4QTnpAzH&sz=w1920' },
+    { type: 'image', src: 'https://drive.google.com/thumbnail?id=17t81KRJVULC3IohMjgUkTwIf0PDgW2Pr&sz=w1920' },
+    { type: 'image', src: 'https://drive.google.com/thumbnail?id=1_uItFPRJL3jZVfbhf4PSYrnIW30gN_oi&sz=w1920' },
+    { type: 'image', src: 'https://drive.google.com/thumbnail?id=1RRyManbrAuLxg0PKuS8Fu9pkQ5hbkx-Q&sz=w1920' },
+    { type: 'image', src: 'https://drive.google.com/thumbnail?id=1Kks75AGidDGednkCJfO9A_LkR54H9fQm&sz=w1920' }
   ];
 
   useEffect(() => {
