@@ -206,6 +206,25 @@ export default function App() {
           </div>
         </section>
 
+        {/* Infinite Cities Marquee */}
+        <section className="bg-[#c5a47e] py-3 sm:py-4 overflow-hidden border-y border-[#c5a47e]/20 relative z-20 shadow-xl">
+          <motion.div 
+            className="flex whitespace-nowrap gap-8 sm:gap-16 items-center justify-start w-max"
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{ ease: "linear", duration: 30, repeat: Infinity }}
+          >
+            {[...Array(4)].flatMap(() => [
+              "Americana", "Araçatuba", "Araraquara", "Bauru", "Campinas", "Cotia", "Franca", "Jundiaí", "Marília", 
+              "Piracicaba", "Presidente Prudente", "Ribeirão Preto", "Santana de Parnaíba", "São Carlos", 
+              "São José do Rio Preto", "São Paulo", "Sorocaba"
+            ]).map((city, index) => (
+              <div key={index} className="flex items-center gap-8 sm:gap-16">
+                <span className="text-[#15191E] font-kiona font-bold text-xs sm:text-sm tracking-[0.2em] uppercase opacity-90">{city}</span>
+                <div className="w-1.5 h-1.5 rounded-full bg-[#15191E]/30"></div>
+              </div>
+            ))}
+          </motion.div>
+        </section>
         {/* About Section */}
         <section id="about" className="relative py-16 sm:py-24 md:py-32 overflow-hidden border-b border-white/5">
           <div className="absolute top-0 left-0 text-[10rem] md:text-[20rem] font-kiona font-bold text-white/[0.02] leading-none select-none -z-10 -translate-y-1/4 -translate-x-10">
@@ -267,9 +286,9 @@ export default function App() {
                 </div>
                 <div className="flex-1">
                   <img 
-                    src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=800" 
-                    alt="Abstract Architecture" 
-                    className="w-full h-full object-cover grayscale opacity-80"
+                    src="https://drive.google.com/thumbnail?id=11L2YzqQ4as_3oKMIC-ihMCqVY4gs5D6o&sz=w1000" 
+                    alt="Estrutura de Obras Fcon" 
+                    className="w-full h-full object-cover grayscale opacity-80 transition-all duration-700 hover:grayscale-0 hover:opacity-100"
                   />
                 </div>
               </motion.div>
