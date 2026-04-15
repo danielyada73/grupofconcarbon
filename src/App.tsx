@@ -292,7 +292,7 @@ export default function App() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="relative group overflow-hidden border-r border-white/5 min-h-[250px] sm:min-h-[300px]"
             >
-              <img src="/GABIÃO.jpg" alt="Gabião" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100" />
+              <img src="https://drive.google.com/thumbnail?id=1-NTyClfp1TVQ3dkUkiYjZnipPhwmK4kg&sz=w1200" alt="Gabião" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#15191E] via-[#15191E]/50 to-transparent"></div>
               <div className="absolute top-6 sm:top-10 left-6 sm:left-8 right-6 sm:right-8">
                 <h3 className="text-xl sm:text-2xl font-kiona font-bold uppercase tracking-wide">Gabião</h3>
@@ -312,7 +312,7 @@ export default function App() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="relative group overflow-hidden border-r border-white/5 min-h-[250px] sm:min-h-[300px]"
             >
-              <img src="/Portarias e Club House.jpg" alt="Portarias e Club House" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100" />
+              <img src="https://drive.google.com/thumbnail?id=1CcDqIys9qp4N5rT2DFZYamCQtKs3x6c5&sz=w1200" alt="Portarias e Club House" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#15191E] via-[#15191E]/50 to-transparent"></div>
               <div className="absolute top-6 sm:top-10 left-6 sm:left-8 right-6 sm:right-8">
                 <h3 className="text-xl sm:text-2xl font-kiona font-bold uppercase tracking-wide">Portarias e<br/>Club House</h3>
@@ -332,7 +332,7 @@ export default function App() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="relative group overflow-hidden border-r border-white/5 min-h-[250px] sm:min-h-[300px]"
             >
-              <img src="/Infraestrutura Urbana.jpg" alt="Infraestrutura Urbana" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100" />
+              <img src="https://drive.google.com/thumbnail?id=1eJVNLqPu8qarUN0EPaMcVJT8W6i9ucsL&sz=w1200" alt="Infraestrutura Urbana" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#15191E] via-[#15191E]/50 to-transparent"></div>
               <div className="absolute top-6 sm:top-10 left-6 sm:left-8 right-6 sm:right-8">
                 <h3 className="text-xl sm:text-2xl font-kiona font-bold uppercase tracking-wide">Infraestrutura<br/>Urbana</h3>
@@ -352,7 +352,7 @@ export default function App() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="relative group overflow-hidden min-h-[250px] sm:min-h-[300px]"
             >
-              <img src="/Urbanismo.jpg" alt="Obras Comerciais" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100" />
+              <img src="https://drive.google.com/thumbnail?id=1SJsn-7wwVWI_gau0g3kfi1yB_Ih9mroq&sz=w1200" alt="Obras Comerciais" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#15191E] via-[#15191E]/50 to-transparent"></div>
               <div className="absolute top-6 sm:top-10 left-6 sm:left-8 right-6 sm:right-8">
                 <h3 className="text-xl sm:text-2xl font-kiona font-bold uppercase tracking-wide">Obras Comerciais</h3>
