@@ -8,7 +8,7 @@ export default function App() {
   const [currentHeroImage, setCurrentHeroImage] = useState(0);
 
   const heroMedia = [
-    { type: 'video', src: 'https://drive.google.com/uc?export=download&id=1BzOuoNvwe3H8LhhCVW0rdYoWkZDYN6hN#t=5' },
+    { type: 'youtube', src: 'f6p4Hk9CWbU' },
     { type: 'image', src: 'https://drive.google.com/thumbnail?id=1GrdlehQFNLSyKJ2e41LQf2Dv4QTnpAzH&sz=w1920' },
     { type: 'image', src: 'https://drive.google.com/thumbnail?id=17t81KRJVULC3IohMjgUkTwIf0PDgW2Pr&sz=w1920' },
     { type: 'image', src: 'https://drive.google.com/thumbnail?id=1_uItFPRJL3jZVfbhf4PSYrnIW30gN_oi&sz=w1920' },
@@ -119,7 +119,23 @@ export default function App() {
         <section className="relative h-screen flex items-center overflow-hidden">
           <div className="absolute inset-0 z-0 bg-[#15191E]">
             <AnimatePresence mode="popLayout">
-              {heroMedia[currentHeroImage].type === 'image' ? (
+              {heroMedia[currentHeroImage].type === 'youtube' ? (
+                <motion.div
+                  key={`yt-${currentHeroImage}`}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 1.5, ease: "easeInOut" }}
+                  className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none bg-[#15191E]"
+                >
+                  <iframe 
+                    src={`https://www.youtube.com/embed/${heroMedia[currentHeroImage].src}?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&start=5&end=15&loop=1&playlist=${heroMedia[currentHeroImage].src}&playsinline=1`}
+                    className="absolute top-1/2 left-1/2 w-[300%] h-[300%] sm:w-[150vw] sm:h-[150vh] lg:w-[110vw] lg:h-[110vh] -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+                    allow="autoplay; encrypted-media"
+                    frameBorder="0"
+                  />
+                </motion.div>
+              ) : heroMedia[currentHeroImage].type === 'image' ? (
                 <motion.img
                   key={`img-${currentHeroImage}`}
                   src={heroMedia[currentHeroImage].src}
