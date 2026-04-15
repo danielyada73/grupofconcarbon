@@ -54,8 +54,8 @@ export default function App() {
         </div>
 
         <div className="flex flex-col gap-6 text-gray-500">
-          <a href="#" className="hover:text-[#c5a47e] transition-colors"><Instagram size={16} /></a>
-          <a href="#" className="hover:text-[#c5a47e] transition-colors"><Linkedin size={16} /></a>
+          <a href="https://www.instagram.com/fcon_engenharia/" target="_blank" rel="noreferrer" className="hover:text-[#c5a47e] transition-colors"><Instagram size={16} /></a>
+          <a href="https://www.linkedin.com/company/fcon---engenharia-e-construcoes/about/" target="_blank" rel="noreferrer" className="hover:text-[#c5a47e] transition-colors"><Linkedin size={16} /></a>
         </div>
       </div>
 
@@ -66,9 +66,9 @@ export default function App() {
         <header className={`fixed top-0 left-0 lg:left-20 right-0 z-40 transition-all duration-300 ${scrolled ? 'bg-[#15191E]/95 backdrop-blur-md py-3 md:py-4 border-b border-white/10' : 'bg-transparent py-4 md:py-6'}`}>
           <div className="container mx-auto px-4 sm:px-6 md:px-8 flex justify-between items-center">
             <div className="flex items-center gap-4 md:gap-8">
-              <div className="text-xl sm:text-2xl md:text-3xl font-kiona font-bold tracking-wider flex items-center gap-1 sm:gap-2">
-                <span className="text-white">FCON</span>
-                <span className="text-[#c5a47e]">CARBON</span>
+              <div className="text-xl sm:text-2xl md:text-3xl font-kiona font-bold tracking-wider flex items-center gap-4 sm:gap-6">
+                <img src="/logo-fcon-engenharia-construcoes-01-custom-276x276 1.png" alt="FCON" className="h-8 sm:h-12 w-auto object-contain brightness-0 invert" />
+                <img src="/logo-carbon-construcoes-instalacoes-aprovado-03-medium-1 1.png" alt="CARBON" className="h-6 sm:h-8 w-auto object-contain brightness-0 invert" />
               </div>
               <div className="hidden md:block text-sm font-kiona text-gray-400 tracking-widest font-medium">
                 (11) 93740-8195
@@ -108,8 +108,8 @@ export default function App() {
                 (11) 93740-8195
               </div>
               <div className="flex gap-6 text-gray-500 mt-4">
-                <a href="#" className="hover:text-[#c5a47e] transition-colors"><Instagram size={20} /></a>
-                <a href="#" className="hover:text-[#c5a47e] transition-colors"><Linkedin size={20} /></a>
+                <a href="https://www.instagram.com/fcon_engenharia/" target="_blank" rel="noreferrer" className="hover:text-[#c5a47e] transition-colors"><Instagram size={20} /></a>
+                <a href="https://www.linkedin.com/company/fcon---engenharia-e-construcoes/about/" target="_blank" rel="noreferrer" className="hover:text-[#c5a47e] transition-colors"><Linkedin size={20} /></a>
               </div>
             </motion.div>
           )}
@@ -211,7 +211,7 @@ export default function App() {
           <motion.div 
             className="flex whitespace-nowrap gap-8 sm:gap-16 items-center justify-start w-max"
             animate={{ x: ["0%", "-50%"] }}
-            transition={{ ease: "linear", duration: 30, repeat: Infinity }}
+            transition={{ ease: "linear", duration: 150, repeat: Infinity }}
           >
             {[...Array(4)].flatMap(() => [
               "Americana", "Araçatuba", "Araraquara", "Bauru", "Campinas", "Cotia", "Franca", "Jundiaí", "Marília", 
@@ -414,45 +414,38 @@ export default function App() {
               <h2 className="text-xs sm:text-sm font-kiona text-[#c5a47e] tracking-[0.3em] uppercase font-bold">Nossos Clientes</h2>
             </div>
 
-            <motion.div 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
-              variants={{
-                visible: { transition: { staggerChildren: 0.1 } },
-                hidden: {}
-              }}
-              className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-10 md:gap-16 lg:gap-20 items-center justify-items-center max-w-6xl mx-auto"
-            >
-              {[
-                { name: 'Cipasa', src: '/logos/cipasa_35_anos.png' },
-                { name: 'Alphaville', src: '/logos/alphaville.png' },
-                { name: 'Direcional', src: '/logos/direcional.png' },
-                { name: 'Zopone', src: '/logos/zopone.png' },
-                { name: 'Tamboré', src: '/logos/tambore_bauru.png' },
-                { name: 'Lote5', src: '/logos/lote5.png' },
-                { name: 'Five5', src: '/logos/five5.png' },
-              ].map((client) => (
-                <motion.div 
-                  key={client.name}
-                  variants={{ hidden: { opacity: 0, scale: 0.9 }, visible: { opacity: 1, scale: 1 } }} 
-                  className="group flex justify-center items-center w-full h-20 sm:h-24"
-                >
-                  <img 
-                    src={client.src} 
-                    alt={client.name} 
-                    className="max-h-12 sm:max-h-16 md:max-h-20 max-w-[120px] sm:max-w-[160px] md:max-w-[180px] object-contain opacity-40 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 will-change-[transform,filter,opacity] group-hover:scale-105" 
-                    onError={(e) => {
-                      e.currentTarget.style.display = 'none';
-                      e.currentTarget.nextElementSibling?.classList.remove('hidden');
-                    }}
-                  />
-                  <span className="hidden text-center font-kiona font-bold text-lg md:text-xl tracking-widest uppercase opacity-40 group-hover:opacity-100 transition-opacity duration-500">
-                    {client.name}
-                  </span>
-                </motion.div>
-              ))}
-            </motion.div>
+            <div className="relative w-full max-w-6xl mx-auto overflow-hidden flex items-center h-24 sm:h-32 mask-image-gradient">
+              <motion.div 
+                className="flex whitespace-nowrap gap-16 md:gap-24 items-center justify-start w-max"
+                animate={{ x: ["0%", "-50%"] }}
+                transition={{ ease: "linear", duration: 80, repeat: Infinity }}
+              >
+                {[...Array(3)].flatMap(() => [
+                  { name: 'Cipasa', src: '/logos/cipasa_35_anos.png' },
+                  { name: 'Alphaville', src: '/logos/alphaville.png' },
+                  { name: 'Direcional', src: '/logos/direcional.png' },
+                  { name: 'Zopone', src: '/logos/zopone.png' },
+                  { name: 'Tamboré', src: '/logos/tambore_bauru.png' },
+                  { name: 'Lote5', src: '/logos/lote5.png' },
+                  { name: 'Five5', src: '/logos/five5.png' },
+                ]).map((client, index) => (
+                  <div key={`${client.name}-${index}`} className="flex justify-center items-center h-20 sm:h-24 px-4 group">
+                    <img 
+                      src={client.src} 
+                      alt={client.name} 
+                      className="max-h-12 sm:max-h-16 md:max-h-20 max-w-[120px] sm:max-w-[160px] md:max-w-[180px] object-contain opacity-40 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" 
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                        e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                      }}
+                    />
+                    <span className="hidden text-center font-kiona font-bold text-lg md:text-xl tracking-widest uppercase opacity-40 group-hover:opacity-100 transition-opacity duration-300">
+                      {client.name}
+                    </span>
+                  </div>
+                ))}
+              </motion.div>
+            </div>
 
             <div className="mt-10 sm:mt-16 md:mt-20 text-center">
               <button className="bg-transparent border border-[#c5a47e] text-[#c5a47e] hover:bg-[#c5a47e] hover:text-white text-xs sm:text-sm font-kiona font-bold tracking-[0.15em] sm:tracking-[0.2em] uppercase py-3 sm:py-4 px-6 sm:px-10 rounded-sm transition-all inline-flex items-center gap-3">
@@ -574,9 +567,9 @@ export default function App() {
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-10 md:gap-12 mb-10 sm:mb-16">
               <div>
-                <div className="text-2xl sm:text-3xl font-kiona font-bold tracking-wider flex items-center gap-2 mb-4 sm:mb-6">
-                  <span className="text-white">FCON</span>
-                  <span className="text-[#c5a47e]">CARBON</span>
+                <div className="text-xl sm:text-2xl md:text-3xl font-kiona font-bold tracking-wider flex items-center gap-4 mb-4 sm:mb-6">
+                  <img src="/logo-fcon-engenharia-construcoes-01-custom-276x276 1.png" alt="FCON" className="h-8 sm:h-12 w-auto object-contain brightness-0 invert" />
+                  <img src="/logo-carbon-construcoes-instalacoes-aprovado-03-medium-1 1.png" alt="CARBON" className="h-6 sm:h-8 w-auto object-contain brightness-0 invert" />
                 </div>
                 <p className="text-gray-500 text-sm leading-relaxed max-w-xs font-light">
                   Construções e Infraestrutura.<br/>
